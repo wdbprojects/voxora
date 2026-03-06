@@ -1,8 +1,11 @@
 "use server";
 
+import { routes } from "@/config/routes";
 import { auth } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { LoginSchemaType, RegisterSchemaType } from "@/schemas/auth-schemas";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const registerAction = async (data: RegisterSchemaType) => {
   try {
@@ -57,4 +60,20 @@ export const getUserDataAction = async (id: string) => {
     console.error(err);
     return { success: false };
   }
+};
+
+export const getCurrentUserAction = async () => {
+  const session = await auth.api.getSession({ headers: await headers() });
+  if (!session) {
+    redirect(routes.login);
+  }
+  const currentUser = await prisma.user.findUnique({
+    where: {
+      id: session?.user?.id,
+    },
+  });
+  if (!currentUser) {
+    redirect(routes.login);
+  }
+  return { ...session, currentUser };
 };

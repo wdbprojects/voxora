@@ -19,12 +19,10 @@ import {
 // import { sidebarData } from "@/config/data";
 import { authClient } from "@/lib/auth-client";
 import { BadgeCheck, Bell, CreditCard, LogOut } from "lucide-react";
-import { usePathname } from "next/navigation";
 
 const NavUser = () => {
   // const { user } = sidebarData;
-  const { isMobile, setOpenMobile } = useSidebar();
-  const pathname = usePathname();
+  const { isMobile } = useSidebar();
 
   const { data } = authClient.useSession();
   const user = data?.user;

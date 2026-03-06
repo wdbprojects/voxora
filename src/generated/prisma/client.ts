@@ -76,3 +76,13 @@ export type Member = Prisma.MemberModel
  * 
  */
 export type Invitation = Prisma.InvitationModel
+/**
+ * Model Voice
+ * 
+ */
+export type Voice = Prisma.VoiceModel
+/**
+ * Model Generation
+ * 
+ */
+export type Generation = Prisma.GenerationModel

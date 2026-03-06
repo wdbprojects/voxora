@@ -1,3 +1,9 @@
+-- CreateEnum
+CREATE TYPE "VoiceVariant" AS ENUM ('SYSTEM', 'CUSTOM');
+
+-- CreateEnum
+CREATE TYPE "VoiceCategory" AS ENUM ('AUDIOBOOK', 'CONVERSATIONAL', 'CUSTOMER_SERVICE', 'GENERAL', 'NARRATIVE', 'CHARACTERS', 'MEDITATION', 'MOTIVATIONAL', 'PODCAST', 'ADVERTISING', 'VOICEOVER', 'CORPORATE');
+
 -- CreateTable
 CREATE TABLE "user" (
     "id" TEXT NOT NULL,
@@ -94,6 +100,40 @@ CREATE TABLE "invitation" (
     CONSTRAINT "invitation_pkey" PRIMARY KEY ("id")
 );
 
+-- CreateTable
+CREATE TABLE "voice" (
+    "id" TEXT NOT NULL,
+    "orgId" TEXT,
+    "name" TEXT NOT NULL,
+    "description" TEXT,
+    "category" "VoiceCategory" NOT NULL DEFAULT 'GENERAL',
+    "language" TEXT NOT NULL DEFAULT 'en-US',
+    "variant" "VoiceVariant" NOT NULL,
+    "r2ObjectKey" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "voice_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "generation" (
+    "id" TEXT NOT NULL,
+    "orgId" TEXT NOT NULL,
+    "voiceId" TEXT,
+    "text" TEXT NOT NULL,
+    "voiceName" TEXT NOT NULL,
+    "r2ObjectKey" TEXT,
+    "temperature" DOUBLE PRECISION NOT NULL,
+    "topP" DOUBLE PRECISION NOT NULL,
+    "topK" INTEGER NOT NULL,
+    "repetitionPenalty" DOUBLE PRECISION NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "generation_pkey" PRIMARY KEY ("id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
 
@@ -124,6 +164,12 @@ CREATE INDEX "invitation_organizationId_idx" ON "invitation"("organizationId");
 -- CreateIndex
 CREATE INDEX "invitation_email_idx" ON "invitation"("email");
 
+-- CreateIndex
+CREATE INDEX "voice_variant_idx" ON "voice"("variant");
+
+-- CreateIndex
+CREATE INDEX "voice_orgId_idx" ON "voice"("orgId");
+
 -- AddForeignKey
 ALTER TABLE "session" ADD CONSTRAINT "session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
@@ -141,3 +187,6 @@ ALTER TABLE "invitation" ADD CONSTRAINT "invitation_organizationId_fkey" FOREIGN
 
 -- AddForeignKey
 ALTER TABLE "invitation" ADD CONSTRAINT "invitation_inviterId_fkey" FOREIGN KEY ("inviterId") REFERENCES "user"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "generation" ADD CONSTRAINT "generation_voiceId_fkey" FOREIGN KEY ("voiceId") REFERENCES "voice"("id") ON DELETE SET NULL ON UPDATE CASCADE;

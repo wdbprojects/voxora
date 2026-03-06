@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Public_Sans } from "next/font/google";
+import { Public_Sans } from "next/font/google";
 import "./globals.css";
 import Providers from "@/app/providers";
 
