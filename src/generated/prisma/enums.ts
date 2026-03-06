@@ -9,7 +9,27 @@
 * 🟢 You can import this file directly.
 */
 
+export const VoiceVariant = {
+  SYSTEM: 'SYSTEM',
+  CUSTOM: 'CUSTOM'
+} as const
+
+export type VoiceVariant = (typeof VoiceVariant)[keyof typeof VoiceVariant]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const VoiceCategory = {
+  AUDIOBOOK: 'AUDIOBOOK',
+  CONVERSATIONAL: 'CONVERSATIONAL',
+  CUSTOMER_SERVICE: 'CUSTOMER_SERVICE',
+  GENERAL: 'GENERAL',
+  NARRATIVE: 'NARRATIVE',
+  CHARACTERS: 'CHARACTERS',
+  MEDITATION: 'MEDITATION',
+  MOTIVATIONAL: 'MOTIVATIONAL',
+  PODCAST: 'PODCAST',
+  ADVERTISING: 'ADVERTISING',
+  VOICEOVER: 'VOICEOVER',
+  CORPORATE: 'CORPORATE'
+} as const
+
+export type VoiceCategory = (typeof VoiceCategory)[keyof typeof VoiceCategory]

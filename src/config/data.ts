@@ -1,14 +1,5 @@
 import { routes } from "@/config/routes";
-import {
-  Bot,
-  Gauge,
-  Images,
-  ImageUp,
-  LifeBuoy,
-  Settings2,
-  SquareTerminal,
-  UserRound,
-} from "lucide-react";
+import { Gauge, Images, ImageUp, Settings2 } from "lucide-react";
 
 export const sidebarData = {
   navMain: [
