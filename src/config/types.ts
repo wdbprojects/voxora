@@ -8,3 +8,11 @@ export interface LayoutPropsMain {
 export interface OrganizationSwitchProps {
   organizations: Organization[];
 }
+
+export type IQuickAction = {
+  key: number;
+  title: string;
+  description: string;
+  gradient: string;
+  href: string;
+};

@@ -17,7 +17,7 @@ const HeaderDashboard = async () => {
         {/* // AUTH & BUTTONS */}
         <div className="flex shrink-0 items-center gap-4 p-1">
           {session && (
-            <div>
+            <div className="hidden md:block">
               <span className="text-muted-foreground text-xs">Signed as: </span>
               <Badge variant="default">{session?.user?.name}</Badge>
             </div>
