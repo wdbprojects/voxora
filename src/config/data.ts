@@ -1,12 +1,19 @@
 import { routes } from "@/config/routes";
-import { Gauge, Images, ImageUp, Settings2 } from "lucide-react";
+import {
+  AudioLines,
+  Gauge,
+  Headphones,
+  LayoutGrid,
+  Settings2,
+  Volume2,
+} from "lucide-react";
 
 export const sidebarData = {
   navMain: [
     {
       id: 1,
       title: "Getting Started",
-      url: "#",
+      // url: "#",
       items: [
         {
           id: 1,
@@ -16,30 +23,34 @@ export const sidebarData = {
         },
         {
           id: 2,
-          title: "Create Image",
-          url: "#",
-          icon: Images,
+          title: "Explore Voices",
+          url: routes.voices,
+          icon: LayoutGrid,
         },
         {
           id: 3,
-          title: "Optimizing",
-          url: "#",
-          icon: ImageUp,
+          title: "Text to speech",
+          url: routes.textToSpeech,
+          icon: AudioLines,
         },
-        { id: 4, title: "Settings", url: "#", icon: Settings2 },
-      ],
-    },
-    /*  {
-      id: 2,
-      title: "Getting Continued",
-      url: "#",
-      items: [
-        { id: 1, title: "Data Fetching", url: "#", icon: LifeBuoy },
-        { id: 2, title: "Rendering", url: "#", icon: Settings2 },
-        { id: 3, title: "Optimizing", url: "#", icon: ImageUp },
+        { id: 4, title: "Voice Cloning", url: "#", icon: Volume2 },
       ],
     },
     {
+      id: 2,
+      title: "Other Links",
+      // url: "#",
+      items: [
+        { id: 1, title: "Settings", url: routes.settings, icon: Settings2 },
+        {
+          id: 2,
+          title: "Help and Support",
+          url: routes.support,
+          icon: Headphones,
+        },
+      ],
+    },
+    /* {
       id: 3,
       title: "Getting Finished",
       url: "#",
@@ -56,3 +67,6 @@ export const sidebarData = {
     avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
   },
 };
+
+export const TEXT_MAX_LENGTH = 5000;
+export const COST_PER_UNIT = 0.0003;

@@ -1,6 +1,6 @@
 import { Sidebar } from "@/components/ui/sidebar";
 import DashboardSidebarContent from "@/modules/components/sidebar/dashboard-sidebar-content";
-import MobileSidebarClose from "@/modules/components/sidebar/mobile-sidebar-close";
+// import MobileSidebarClose from "@/modules/components/sidebar/mobile-sidebar-close";
 
 const DashboardSidebar = () => {
   return (
@@ -9,7 +9,7 @@ const DashboardSidebar = () => {
       variant="floating"
       collapsible="icon"
     >
-      <MobileSidebarClose />
+      {/* <MobileSidebarClose /> */}
       <DashboardSidebarContent />
     </Sidebar>
   );

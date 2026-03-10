@@ -6,7 +6,7 @@ const DashboardOrganizationContent = () => {
   const { data: activeOrganization } = authClient.useActiveOrganization();
 
   return (
-    <div>
+    <div className="h-full">
       <h3 className="text-primary/50 font-semibold text-lg">
         {activeOrganization?.name}
       </h3>
